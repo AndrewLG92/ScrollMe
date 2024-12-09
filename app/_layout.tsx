@@ -16,6 +16,8 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    PermanentMarker: require('../assets/fonts/PermanentMarker-Regular.ttf'),
+    RockSalt: require('../assets/fonts/RockSalt-Regular.ttf'),
   });
 
   useEffect(() => {
