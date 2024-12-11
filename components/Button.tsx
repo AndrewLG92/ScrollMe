@@ -6,7 +6,6 @@ interface BtnProps {
   onPress: any,
 }
 
-
 const Button = ({title, onPress}: BtnProps) => {
   return (
     <Pressable style={styles.button} onPress={onPress}>
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#ec4899',
-    boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.5)',
+    boxShadow: '0px 0px 15px 15px rgba(0, 0, 0, 0.5)',
     width: 150,
   },
   text: {
