@@ -2,6 +2,9 @@ import { View, Text, ScrollView, StatusBar as sb, StyleSheet } from 'react-nativ
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import FormField from '@/components/FormField'
+import { BlurView } from 'expo-blur'
+import Divider from '@/components/Divider'
+import Button from '@/components/Button'
 
 export default function SignUp() {
   const barht = sb.currentHeight;
@@ -9,54 +12,89 @@ export default function SignUp() {
     displayname: '',
     email: '',
     password: '',
-    bio: '',
-    birthday: '',
   });
   const onTextChange = (field: string, value: string) => {
     setForm({ ...form, [field]: value});
   }
+
+  //Submit Function
+  const submitForm = () => {
+    //Do Stuff
+  };
+
   const styles = StyleSheet.create({
     main: {
-      backgroundColor: 'black',
       marginTop: barht,
-    },
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
+      backgroundColor: "#fff",
+      flex: 1,
+      justifyContent: 'center',
     },
     form: {
-      flex: 1,
-      borderWidth: 4,
+      padding: 25,
       borderRadius: 45,
+      
+    },
+    blurContainer: {
+      padding: 20,
+      margin: 16,
+      textAlign: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      borderRadius: 20,
+      borderWidth: 1,
+      borderColor: '#ec4899',
       backgroundColor: '#fff',
-      padding: 40,
-      position: 'relative',
-      bottom: 0,
-      top: 100,
-      gap: 50,
+      boxShadow: '0px 0px 50px 10px rgba(0,0,0,0.5)',
+      gap: 40,
+    },
+    backgroundImage: {
+      flex: 1,
+      resizeMode: 'cover',
+      justifyContent: 'center',
+    },
+    textStyle: {
+      fontFamily: 'PermanentMarker', 
+      textShadowColor: 'black', 
+      textShadowOffset: {'width': 4, 'height': 5}, 
+      textShadowRadius: 15,
+      textAlign: 'center',
+    },
+    children3: {
+      flex: 1,
+      alignItems: 'center',
+      gap: 40,
     }
   });
 
 
   return (
-    <SafeAreaView className="min-h-[100vh] grid grid-cols-1 items-center" style={styles.main}> 
+    <SafeAreaView className="min-h-[100vh]" style={styles.main}>
       <ScrollView>
+        <Text className="text-6xl p-5 text-pink-500" style={styles.textStyle}>
+          Get Started!&nbsp;
+        </Text>
         <View style={styles.form}>
-          <FormField 
-            title="Display Name"
-            placeholder="Display Name"
-            handleChangeText={onTextChange}
-          />
-          <FormField 
-            title="Email"
-            placeholder="Email"
-            handleChangeText={onTextChange}
-          />
-          <FormField 
-            title="Password"
-            placeholder="Password"
-            handleChangeText={onTextChange}
-          />
+          <BlurView intensity={100} style={styles.blurContainer}>
+            <FormField 
+              title="Display Name"
+              placeholder="Display Name"
+              handleChangeText={onTextChange}
+            />
+            <FormField 
+              title="Email"
+              placeholder="Email"
+              handleChangeText={onTextChange}
+            />
+            <FormField 
+              title="Password"
+              placeholder="Password"
+              handleChangeText={onTextChange}
+            />
+          </BlurView>
+        </View>
+        <View style={styles.children3}>
+          <Button title="Submit" onPress={submitForm} boxShadow="0px 0px 50px 10px rgba(0,0,0,0.5)" />
+          <Divider title='Sign Up'/>
         </View>
       </ScrollView>
     </SafeAreaView>
