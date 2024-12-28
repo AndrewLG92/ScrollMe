@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         lineHeight: 30,
         fontSize: 16,
-        fontFamily: 'PermanentMarker',
+        fontFamily: 'Chewy',
         color: 'black',
     },
     icon: {

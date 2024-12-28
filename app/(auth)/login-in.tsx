@@ -5,6 +5,10 @@ import FormField from '@/components/FormField'
 import { BlurView } from 'expo-blur'
 import Divider from '@/components/Divider'
 import Button from '@/components/Button'
+import { router } from 'expo-router'
+import Constants from 'expo-constants'
+import axios from 'axios'
+
 
 export default function Login() {
   const barht = sb.currentHeight;
@@ -12,13 +16,50 @@ export default function Login() {
     email: '',
     password: '',
   });
-  const onTextChange = (field: string, value: string) => {
-    setForm({ ...form, [field]: value});
-  }
+
+  const ip = Constants.expoConfig?.extra?.LOCAL_IP;
+  const port = Constants.expoConfig?.extra?.LOCAL_PORT;
+
+  
+
 
   //Submit Function
-  const submitForm = () => {
-    //Do Stuff
+  const submitForm = async () => {
+    console.log('Form:', form);
+    console.log('IP:', ip);
+    console.log('Port:', port);
+    try {
+      const response = await axios.post(`http://${ip}:${port}/api/auth/login`, form, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      // const response = await fetch(`http://${ip}:${port}/api/auth/login`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(form),
+      // });
+
+      // if(!response) {
+      //   console.log('Error Logging in:', response);
+      //   throw new Error('Error Logging in');
+      // }
+
+      //const data = await response.json();
+      console.log('User Logged in:', response.data);
+      router.push('/profile');
+    } catch (error: any) {
+      if(error.response) {
+        console.log('Error Logging in:', error.response.data);
+        
+      }else if(error.request) {
+        console.log('Error Logging in:', error.request);
+      }else {
+        console.log('Error Logging in:', error.message);
+      }
+    }
   };
 
   const styles = StyleSheet.create({
@@ -77,12 +118,12 @@ export default function Login() {
             <FormField 
               title="Email"
               placeholder="Email"
-              handleChangeText={onTextChange}
+              handleChangeText={(e: string) => setForm({...form, email: e.toLowerCase()})}
             />
             <FormField 
               title="Password"
               placeholder="Password"
-              handleChangeText={onTextChange}
+              handleChangeText={(e: string) => setForm({...form, password: e})}
             />
           </BlurView>
         </View>

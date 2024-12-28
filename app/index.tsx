@@ -45,7 +45,7 @@ export default function SplashScreen() {
       />
       <View className="grid grid-cols-1 gap-80 justify-items-evenly min-h-[70vh] items-center z-50 container">
         <Text className="text-6xl z-10 p-5 mt-5 text-pink-500" style={styles.textStyle}>
-          ScrollMe!&nbsp;
+        &nbsp;Our Saga!&nbsp;
         </Text>
 
         <View className="grid grid-cols-1 gap-20">

@@ -5,21 +5,57 @@ import FormField from '@/components/FormField'
 import { BlurView } from 'expo-blur'
 import Divider from '@/components/Divider'
 import Button from '@/components/Button'
+//import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
+import { router } from 'expo-router'
+import axios from 'axios'
+import Constants from 'expo-constants'
 
 export default function SignUp() {
   const barht = sb.currentHeight;
+  const [confirmPwd, setConfirmPwd ] = useState('');
   const [form, setForm] = useState({
     displayname: '',
     email: '',
     password: '',
   });
-  const onTextChange = (field: string, value: string) => {
-    setForm({ ...form, [field]: value});
-  }
+
+  const ip = Constants.expoConfig?.extra?.LOCAL_IP;
+  const port = Constants.expoConfig?.extra?.LOCAL_PORT;
+
 
   //Submit Function
-  const submitForm = () => {
-    //Do Stuff
+  const submitForm = async () => {
+    console.log('Form:', form);
+    if(form.password !== confirmPwd) {
+      alert('Passwords do not match');
+      return;
+    }
+    if(!form.displayname || !form.email || !form.password) {
+      alert('Please fill in all fields');
+      return;
+    }
+    try {
+      const res = await axios.post(`http://${ip}:${port}/api/users`, form, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      // const res = await fetch(`http://${ip}:${port}/api/users`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(form),
+      // })
+      if(!res) {
+        console.log('Error Creating User:', res);
+        throw new Error('Error Creating User');
+      }
+      console.log('User Created', res);
+      router.push('/profile');
+    } catch (error: any) {
+      console.log('Error Creating user:', error);
+    }
   };
 
   const styles = StyleSheet.create({
@@ -32,7 +68,7 @@ export default function SignUp() {
     form: {
       padding: 25,
       borderRadius: 45,
-      
+      //fontFamily: 'Chewy',
     },
     blurContainer: {
       padding: 20,
@@ -63,13 +99,17 @@ export default function SignUp() {
       flex: 1,
       alignItems: 'center',
       gap: 40,
-    }
+    },
+    container: {
+      flex: 1,
+    },
   });
 
 
   return (
     <SafeAreaView className="min-h-[100vh]" style={styles.main}>
       <ScrollView>
+        
         <Text className="text-6xl p-5 text-pink-500" style={styles.textStyle}>
           Get Started!&nbsp;
         </Text>
@@ -78,24 +118,42 @@ export default function SignUp() {
             <FormField 
               title="Display Name"
               placeholder="Display Name"
-              handleChangeText={onTextChange}
+              handleChangeText={(e: string) => setForm({...form, displayname: e.toLowerCase()})}
             />
             <FormField 
               title="Email"
               placeholder="Email"
-              handleChangeText={onTextChange}
+              handleChangeText={(e: string) => setForm({...form, email: e.toLowerCase()})}
             />
             <FormField 
               title="Password"
               placeholder="Password"
-              handleChangeText={onTextChange}
+              handleChangeText={(e: string) => setForm({...form, password: e})}
+            />
+            <FormField 
+              title="Password"
+              placeholder="Confirm Password"
+              handleChangeText={(e: string) => setConfirmPwd(e)}
             />
           </BlurView>
         </View>
         <View style={styles.children3}>
-          <Button title="Submit" onPress={submitForm} boxShadow="0px 0px 50px 10px rgba(0,0,0,0.5)" />
+          <Button 
+            title="Submit" 
+            onPress={submitForm} 
+            boxShadow="0px 0px 50px 10px rgba(0,0,0,0.5)" 
+          />
           <Divider title='Sign Up'/>
         </View>
+        <View className="flex items-center mt-16">
+          {/* <GoogleSigninButton
+            size={GoogleSigninButton.Size.Icon}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={() => {}}
+            disabled={false}
+          /> */}
+        </View>
+        
       </ScrollView>
     </SafeAreaView>
   )
