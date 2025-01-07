@@ -1,62 +1,54 @@
-import { View, Text, ScrollView, StatusBar as sb, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, StatusBar as sb, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import FormField from '@/components/FormField'
 import { BlurView } from 'expo-blur'
 import Divider from '@/components/Divider'
 import Button from '@/components/Button'
-//import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
+import Toast from 'react-native-toast-message'
 import { router } from 'expo-router'
-import axios from 'axios'
-import Constants from 'expo-constants'
+import EmailForm from '@/components/EmailForm'
+import Auth from '@/components/Auth'
+import AuthGoogle from '@/components/Auth.Google'
 
 export default function SignUp() {
+
+  //const googleIcon = require("@/assets/images/googleIcon.png");
+
   const barht = sb.currentHeight;
-  const [confirmPwd, setConfirmPwd ] = useState('');
-  const [form, setForm] = useState({
-    displayname: '',
-    email: '',
-    password: '',
-  });
+  // const [confirmPwd, setConfirmPwd ] = useState('');
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [form, setForm] = useState({
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  // });
 
-  const ip = Constants.expoConfig?.extra?.LOCAL_IP;
-  const port = Constants.expoConfig?.extra?.LOCAL_PORT;
+  // const submitForm = async () => {
+  //   if(!form.username || !form.email || !form.password) {
+  //     Toast.show({
+  //       type: 'error',
+  //       text1: 'Error',
+  //       text2: 'Please fill in all fields',
+  //     });
+  //     return;
+  //   }
 
+  //   setIsSubmitting(true);
 
-  //Submit Function
-  const submitForm = async () => {
-    console.log('Form:', form);
-    if(form.password !== confirmPwd) {
-      alert('Passwords do not match');
-      return;
-    }
-    if(!form.displayname || !form.email || !form.password) {
-      alert('Please fill in all fields');
-      return;
-    }
-    try {
-      const res = await axios.post(`http://${ip}:${port}/api/users`, form, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      // const res = await fetch(`http://${ip}:${port}/api/users`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(form),
-      // })
-      if(!res) {
-        console.log('Error Creating User:', res);
-        throw new Error('Error Creating User');
-      }
-      console.log('User Created', res);
-      router.push('/profile');
-    } catch (error: any) {
-      console.log('Error Creating user:', error);
-    }
-  };
+  //   try {
+  //     await createUser(form.email, form.password, form.username);
+
+  //     router.push('/profile');
+  //   }catch (error: any) {
+  //     console.log('Error Creating User:', error);
+  //   }finally {
+  //     setIsSubmitting(false); 
+  //   }
+  // };
+
+  //const ip = Constants.expoConfig?.extra?.LOCAL_IP;
+  //const port = Constants.expoConfig?.extra?.LOCAL_PORT;
 
   const styles = StyleSheet.create({
     main: {
@@ -109,8 +101,10 @@ export default function SignUp() {
   return (
     <SafeAreaView className="min-h-[100vh]" style={styles.main}>
       <ScrollView>
-        
-        <Text className="text-6xl p-5 text-pink-500" style={styles.textStyle}>
+        <AuthGoogle />
+        {/* <Auth /> */}
+        {/* <EmailForm /> */}
+        {/* <Text className="text-6xl p-5 text-pink-500" style={styles.textStyle}>
           Get Started!&nbsp;
         </Text>
         <View style={styles.form}>
@@ -118,7 +112,7 @@ export default function SignUp() {
             <FormField 
               title="Display Name"
               placeholder="Display Name"
-              handleChangeText={(e: string) => setForm({...form, displayname: e.toLowerCase()})}
+              handleChangeText={(e: string) => setForm({...form, username: e.toLowerCase()})}
             />
             <FormField 
               title="Email"
@@ -146,13 +140,14 @@ export default function SignUp() {
           <Divider title='Sign Up'/>
         </View>
         <View className="flex items-center mt-16">
-          {/* <GoogleSigninButton
-            size={GoogleSigninButton.Size.Icon}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={() => {}}
-            disabled={false}
-          /> */}
-        </View>
+          <TouchableOpacity onPress={loginInWithGoogle}>
+            <Image 
+              source={googleIcon}
+              style={{width: 40, height: 40}}
+            />
+          </TouchableOpacity>
+          
+        </View> */}
         
       </ScrollView>
     </SafeAreaView>

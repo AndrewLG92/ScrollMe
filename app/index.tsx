@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { StatusBar } from 'expo-status-bar';
 import Button from '../components/Button';
-import { router } from 'expo-router';
+import { Redirect, router } from 'expo-router';
+
 
 export default function SplashScreen() {
   
@@ -45,7 +46,7 @@ export default function SplashScreen() {
       />
       <View className="grid grid-cols-1 gap-80 justify-items-evenly min-h-[70vh] items-center z-50 container">
         <Text className="text-6xl z-10 p-5 mt-5 text-pink-500" style={styles.textStyle}>
-        &nbsp;Our Saga!&nbsp;
+        &nbsp;Scroll Me!&nbsp;
         </Text>
 
         <View className="grid grid-cols-1 gap-20">

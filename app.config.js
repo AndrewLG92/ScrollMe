@@ -4,11 +4,69 @@ export default {
   name: 'ScrollMe',
   slug: "ScrollMe",
   version: '1.0.0',
+  orientation: "portrait",
+  icon: "./assets/images/icon.png",
+  scheme: 'com.scrollme',
+  userInterfaceStyle: "automatic",
+  newArchEnabled: true,
+  ios: {
+    supportsTablet: true
+  },
+  
   extra: {
-    LOCAL_IP: process.env.LOCAL_IP,
-    LOCAL_PORT: process.env.LOCAL_PORT,
-    HTTPS_PORT: process.env.HTTPS_PORT,
+    SUPABASE_URL: process.env.EXPO_PUBLIC_SUPABASE_URL,
+    SUPABASE_ANON_KEY: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    eas: {
+      projectId: "8abf3f8a-d681-4dd5-8124-0d1b3f17d69f",
+    },
+    router: {
+      origin: false
+    },
   },
   newArchEnabled: true,
-  scheme: 'https',
+  
+  android: {
+    adaptiveIcon: {
+      foregroundImage: "./assets/images/adaptive-icon.png",
+      backgroundColor: "#ffffff"
+    },
+    package: "com.ScrollMe.app",
+    version: 1
+  },
+  web: {
+    bundler: "metro",
+    output: "static",
+    favicon: "./assets/images/favicon.png"
+  },
+  plugins: [
+    "expo-secure-store",
+    "expo-router",
+    [
+      "expo-splash-screen",
+      {
+        "image": "./assets/images/splash-icon.png",
+        "imageWidth": 200,
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
+    ],
+    [
+      "expo-video",
+      {
+        "supportsBackgroundPlayback": true,
+        "supportsPictureInPicture": true,
+      }
+    ],
+    [
+      "@react-native-google-signin/google-signin",
+      {
+        "iosUrlScheme": "com.googleusercontent.apps.1068882792728-lfias5qo3i9v8tnfrr9bch4a61n94ou6"
+      }
+    ]
+  ],
+  experiments: {
+    "typedRoutes": true
+  },
+
 };  

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StatusBar as sb, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, StatusBar as sb, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import FormField from '@/components/FormField'
@@ -6,61 +6,20 @@ import { BlurView } from 'expo-blur'
 import Divider from '@/components/Divider'
 import Button from '@/components/Button'
 import { router } from 'expo-router'
-import Constants from 'expo-constants'
-import axios from 'axios'
+
+
 
 
 export default function Login() {
+
+  const googleIcon = require("@/assets/images/googleIcon.png");
   const barht = sb.currentHeight;
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
 
-  const ip = Constants.expoConfig?.extra?.LOCAL_IP;
-  const port = Constants.expoConfig?.extra?.LOCAL_PORT;
-
   
-
-
-  //Submit Function
-  const submitForm = async () => {
-    console.log('Form:', form);
-    console.log('IP:', ip);
-    console.log('Port:', port);
-    try {
-      const response = await axios.post(`http://${ip}:${port}/api/auth/login`, form, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      // const response = await fetch(`http://${ip}:${port}/api/auth/login`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify(form),
-      // });
-
-      // if(!response) {
-      //   console.log('Error Logging in:', response);
-      //   throw new Error('Error Logging in');
-      // }
-
-      //const data = await response.json();
-      console.log('User Logged in:', response.data);
-      router.push('/profile');
-    } catch (error: any) {
-      if(error.response) {
-        console.log('Error Logging in:', error.response.data);
-        
-      }else if(error.request) {
-        console.log('Error Logging in:', error.request);
-      }else {
-        console.log('Error Logging in:', error.message);
-      }
-    }
-  };
 
   const styles = StyleSheet.create({
     main: {
@@ -128,8 +87,16 @@ export default function Login() {
           </BlurView>
         </View>
         <View style={styles.children3}>
-          <Button title="Submit" onPress={submitForm} boxShadow="0px 0px 50px 10px rgba(0,0,0,0.5)" />
+          <Button title="Submit" onPress={()=> void 0} boxShadow="0px 0px 50px 10px rgba(0,0,0,0.5)" />
           <Divider title='Login!'/>
+        </View>
+        <View className="flex items-center mt-16">
+          <TouchableOpacity onPress={()=> void 0}>
+            <Image 
+              source={googleIcon}
+              style={{width: 40, height: 40}}
+            />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
