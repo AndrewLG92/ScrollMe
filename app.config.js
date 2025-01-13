@@ -17,6 +17,7 @@ export default {
     SUPABASE_URL: process.env.EXPO_PUBLIC_SUPABASE_URL,
     SUPABASE_ANON_KEY: process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    ANDROID_GOOGLE_ID: process.env.ANDROID_GOOGLE_ID,
     eas: {
       projectId: "8abf3f8a-d681-4dd5-8124-0d1b3f17d69f",
     },
@@ -58,12 +59,7 @@ export default {
         "supportsPictureInPicture": true,
       }
     ],
-    [
-      "@react-native-google-signin/google-signin",
-      {
-        "iosUrlScheme": "com.googleusercontent.apps.1068882792728-lfias5qo3i9v8tnfrr9bch4a61n94ou6"
-      }
-    ]
+    ["@react-native-google-signin/google-signin"]
   ],
   experiments: {
     "typedRoutes": true

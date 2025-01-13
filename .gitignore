@@ -38,8 +38,12 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-app-example
+# files
+android/
+.vscode/
+supabase/
+notes/
 
-credentials.json
+app-example
 
 backapp.json.bak

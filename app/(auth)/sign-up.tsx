@@ -8,7 +8,6 @@ import Button from '@/components/Button'
 import Toast from 'react-native-toast-message'
 import { router } from 'expo-router'
 import EmailForm from '@/components/EmailForm'
-import Auth from '@/components/Auth'
 import AuthGoogle from '@/components/Auth.Google'
 
 export default function SignUp() {
@@ -101,9 +100,13 @@ export default function SignUp() {
   return (
     <SafeAreaView className="min-h-[100vh]" style={styles.main}>
       <ScrollView>
-        <AuthGoogle />
-        {/* <Auth /> */}
-        {/* <EmailForm /> */}
+        <View>
+          <EmailForm />
+        </View>
+        <View className="mt-5 ml-9 flex justify-center">
+          <AuthGoogle />
+        </View>
+        
         {/* <Text className="text-6xl p-5 text-pink-500" style={styles.textStyle}>
           Get Started!&nbsp;
         </Text>
