@@ -85,6 +85,7 @@ export default function SignUp() {
       textShadowOffset: {'width': 4, 'height': 5}, 
       textShadowRadius: 15,
       textAlign: 'center',
+      fontSize: 40,
     },
     children3: {
       flex: 1,
@@ -100,9 +101,13 @@ export default function SignUp() {
   return (
     <SafeAreaView className="min-h-[100vh]" style={styles.main}>
       <ScrollView>
+        <Text className="p-5 text-pink-500" style={styles.textStyle}>
+          SignIn&nbsp;Or&nbsp;Login!
+        </Text>
         <View>
           <EmailForm />
         </View>
+        <Divider title='Social Login'/>
         <View className="mt-5 ml-9 flex justify-center">
           <AuthGoogle />
         </View>

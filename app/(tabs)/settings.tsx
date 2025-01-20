@@ -2,6 +2,7 @@ import { View, Text, FlatList, StyleSheet, StatusBar, TouchableOpacity } from 'r
 import React, { useState} from 'react'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
 import { router } from 'expo-router'
+import { supabase } from '@/utils/supabases'
 
 
 
@@ -31,10 +32,15 @@ type ItemProps = {
 }
 
 const Item = ({item, onPress, backgroundColor, textColor}: ItemProps) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
-    <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
-  </TouchableOpacity>
+  
+    <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
+      <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
+    </TouchableOpacity>
 )
+
+const SignOut = async () => {
+  const { error } = await supabase.auth.signOut();
+}
 
 
 const Settings = () => {
@@ -47,7 +53,7 @@ const Settings = () => {
     return (
       <Item
         item={item}
-        onPress={() => item.onPress ? item.onPress() : setSelectedId(item.id)} 
+        onPress={() => item.id === '2' ? SignOut() : setSelectedId(item.id)} 
         backgroundColor={backgroundColor}
         textColor={color}
       />
