@@ -1,4 +1,6 @@
-# Welcome to your Expo app 👋
+# Welcome to ScrollMe app 👋
+
+Video Show Cast Coming Soon!
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
@@ -10,11 +12,31 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
+1.a Need a Device. Connect Phone to PC. 
+   Android: 
+      adb devices
+   IOS:
+      TBA (Not Working on Apple)
+
+
+1.b Before starting you will need to build a stand alone app. best use a Device. (React Native Google Sign In doesn't work with Expo Dev.)
+   Commands: 
+      Option 1: (eas-cli) 
+         eas build:configure
+         select the device you want. IOS or Android. 
+         eas build --platform android --profile development
+      This one will work a lot better. Only because on the Expo Site, you can watch it building out so if ANY errors
+      you can debug and resolve them. 
+      
+      Option 2: this one is tricky. I know I had to do a ton of set up to get google and supabase to work. ( will find link to you later.)
+         npx expo run:android
+
 2. Start the app
 
    ```bash
     npx expo start
    ```
+   or npx expo start:android (Starts up Emulator)
 
 In the output, you'll find options to open the app in a
 
@@ -22,29 +44,3 @@ In the output, you'll find options to open the app in a
 - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
 - [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
