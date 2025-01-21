@@ -1,6 +1,7 @@
 # Welcome to ScrollMe app 👋
 
-[![Watch the video](https://raw.githubusercontent.com/AndrewLG92/ScrollMe/master/assets/videos/preview_app.mp4)]
+<video src="https://github.com/user-attachments/assets/b71fd892-9ece-4aa2-91df-f00865750c7e"></video>
+
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
