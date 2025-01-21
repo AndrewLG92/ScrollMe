@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     width: '100%',
     flexWrap: 'nowrap',
     flexDirection: 'row',
+    marginTop: 25,
   },
   leftBar: {
     height: 1,
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   text: {
-    fontFamily: 'PermanentMarker',
+    fontFamily: 'Roboto',
     width: '25%',
     color: '#ec4899',
     fontSize: 20,

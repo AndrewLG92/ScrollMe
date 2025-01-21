@@ -4,7 +4,7 @@ import Constants from 'expo-constants'
 import { useEffect } from 'react';
 import { Redirect, router } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
-import { AppState } from 'react-native';
+import { AppState, StyleSheet, View } from 'react-native';
 
 
 AppState.addEventListener('change', (state) => {
@@ -52,10 +52,25 @@ export default function AuthGoogle() {
   };
 
   return (
-    <GoogleSigninButton 
-      size={GoogleSigninButton.Size.Wide}
-      color={GoogleSigninButton.Color.Dark}
-      onPress={signIn}
-    />
+    <View style={styles.container}>
+      <GoogleSigninButton 
+        size={GoogleSigninButton.Size.Icon}
+        color={GoogleSigninButton.Color.Dark}
+        onPress={signIn}
+        style={styles.googleStyle}
+      />
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  googleStyle: {
+    height: 50,
+    width: 50,
+  }
+})

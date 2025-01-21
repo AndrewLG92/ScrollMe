@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Button, Input } from '@rneui/themed'
 import { supabase } from '@/utils/supabases'
 
-export default function EmailForm() {
+export default function RegisterForm() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -20,6 +20,7 @@ export default function RootLayout() {
     PermanentMarker: require('../assets/fonts/PermanentMarker-Regular.ttf'),
     RockSalt: require('../assets/fonts/RockSalt-Regular.ttf'),
     Chewy: require('../assets/fonts/Chewy-Regular.ttf'),
+    Roboto: require('../assets/fonts/Roboto-VariableFont_Regular.ttf')
   });
 
   useEffect(() => {

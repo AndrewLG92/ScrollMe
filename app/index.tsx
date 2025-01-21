@@ -6,7 +6,7 @@ import { useVideoPlayer, VideoView } from 'expo-video';
 import Button from '../components/Button';
 import {  router } from 'expo-router';
 
-export default function SplashScreen() {
+export default function Index() {
 
   const videoUri1 = require('@/assets/videos/splash-bg-2.mp4');
     
@@ -20,10 +20,7 @@ export default function SplashScreen() {
   const { height, width } = Dimensions.get('window');
 
   const onSignUpPress = () => {
-    router.push('/(auth)/sign-up');
-  };
-  const onLoginPress = () => {
-    router.push('/(auth)/login-in');
+    router.push('/(auth)/register');
   };
 
   const styles = StyleSheet.create({
@@ -59,13 +56,9 @@ export default function SplashScreen() {
 
           <View className="grid grid-cols-1 gap-20 mt-28">
             <Button
-              title='Sign Up'
+              title='Register'
               onPress={onSignUpPress}
             />
-            {/* <Button 
-              title='Login'
-              onPress={onLoginPress}
-            /> */}
           </View>
         </View>
       </SafeAreaView>
