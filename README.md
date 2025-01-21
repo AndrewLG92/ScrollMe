@@ -1,6 +1,6 @@
 # Welcome to ScrollMe app 👋
 
-Video Show Cast Coming Soon!
+(https://github.com/AndrewLG92/ScrollMe/blob/master/assets/videos/preview_app.mp4)
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
