@@ -42,7 +42,7 @@ export const AuthProvider = ({children}: Props) => {
 
   const checkUser = async () => {
     const session = await supabase.auth.getSession();
-    console.log(session.data.session);
+    //console.log(session.data.session);
     if(session.data.session) {
       setUser(session.data.session.user);
       router.replace('/profile');

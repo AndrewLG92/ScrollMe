@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import {View, Text, RefreshControl, Alert, StatusBar as SB, StyleSheet, Dimensions, ScrollView} from 'react-native';
+import {View, Text, RefreshControl, StyleSheet, Dimensions, ScrollView} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Session } from '@supabase/supabase-js';
-import { supabase } from '@/utils/supabases';
 import { useAuth } from '@/utils/globalcontext'
 import { router } from 'expo-router';
 import { Image } from 'expo-image';
@@ -33,7 +31,7 @@ export default function Profile() {
   const imgUri = user?.user_metadata.avatar_url;
   const userName = user?.user_metadata.full_name;
 
-  const styles = StyleSheet.create({
+  const styles = StyleSheet.create({ 
     container: {
       flex: 1,
       backgroundColor: '#F3F3F3',

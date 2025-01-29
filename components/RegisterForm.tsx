@@ -45,6 +45,9 @@ export default function RegisterForm() {
           value={email}
           placeholder="email@address.com"
           autoCapitalize={'none'}
+          labelStyle={{
+            color: '#ec4899',
+          }}
         />
       </View>
       <View style={[styles.verticallySpaced]}>
@@ -56,13 +59,16 @@ export default function RegisterForm() {
           secureTextEntry={true}
           placeholder="Password"
           autoCapitalize={'none'}
+          labelStyle={{
+            color: '#ec4899',
+          }}
         />
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
+        <Button buttonStyle={styles.btn} title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
       </View>
       <View style={styles.verticallySpaced}>
-        <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
+        <Button buttonStyle={styles.btn} title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
       </View>
     </View>
   )
@@ -77,8 +83,12 @@ const styles = StyleSheet.create({
     paddingTop: 4,
     paddingBottom: 4,
     alignSelf: 'stretch',
+    
   },
   mt20: {
     marginTop: 20,
+  },
+  btn: {
+    backgroundColor: '#ec4899',
   }
 })

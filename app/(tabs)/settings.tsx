@@ -1,96 +1,62 @@
-import { View, Text, FlatList, StyleSheet, StatusBar, TouchableOpacity } from 'react-native'
-import React, { useState} from 'react'
-import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
-import { router } from 'expo-router'
-import { supabase } from '@/utils/supabases'
+import { View, Text, StyleSheet, StatusBar, ScrollView} from 'react-native'
+import React from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import TopSvg from '@/components/profile_ui/topsvg'
+import BottomSvg from '@/components/profile_ui/bottomsvg'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-
-
-type ItemData = {
-  id: string;
-  title: string;
-  onPress?: () => void;
-}
-
-
-const DATA: ItemData[] = [
-  {
-    id: '1',
-    title: 'Account Info',
-  },
-  {
-    id: '2',
-    title: 'Logout',
-  },
-];
-
-type ItemProps = {
-  item: ItemData;
-  onPress: () => void;
-  backgroundColor: string;
-  textColor: string;
-}
-
-const Item = ({item, onPress, backgroundColor, textColor}: ItemProps) => (
-  
-    <TouchableOpacity onPress={onPress} style={[styles.item, {backgroundColor}]}>
-      <Text style={[styles.title, {color: textColor}]}>{item.title}</Text>
-    </TouchableOpacity>
-)
-
-const SignOut = async () => {
-  const { error } = await supabase.auth.signOut();
-}
 
 
 const Settings = () => {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-
-  const renderItem = ({item}: {item: ItemData}) => {
-    const backgroundColor = item.id === selectedId ? '#f9c2ff' : '#f9c2ff';
-    const color = item.id === selectedId ? 'white' : 'black';
-
-    return (
-      <Item
-        item={item}
-        onPress={() => item.id === '2' ? SignOut() : setSelectedId(item.id)} 
-        backgroundColor={backgroundColor}
-        textColor={color}
-      />
-    )
-  }
-
+  
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container} className="min-height-[90vh]" >
-        <FlatList 
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          extraData={selectedId}
-        />
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <SafeAreaView style={styles.main}>
+      <ScrollView >
+        
+        <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
+        <View style={styles.titleContainer}>
+          <View style={styles.iconContainer}>
+            <Ionicons name="settings" size={36} color="black" />
+          </View>
+          <Text style={styles.title}>Settings</Text>
+        </View>
+        <TopSvg fill="white" />
+        
+        <BottomSvg />
+        
+        
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  main: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: '#808080',
   },
-  item: {
-    top: 10,
-    padding: 20,
-    marginVertical: 25,
-    marginHorizontal: 25,
-    borderRadius: 30,
-    boxShadow: '0px 0px 6px 5px rgba(0,0,0,0.5)',
+  titleContainer: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+    flexDirection: 'row',
+    top: 25,
+    left: 25,
+    width: '50%',
+    zIndex: 1,
+  },
+  iconContainer: {
+    flex: 1,
+    top: 4,
+    width: 'auto',
   },
   title: {
     fontSize: 32,
-    fontFamily: 'Chewy',
-  },
+    fontWeight: 'bold',
+    fontFamily: 'Roboto',
+    color: '#000',
+    zIndex: 1,
+  }
 })
 
 export default Settings

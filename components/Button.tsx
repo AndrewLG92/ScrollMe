@@ -23,7 +23,7 @@ export default function Button({title, onPress, boxShadow}: BtnProps) {
       fontSize: 30,
       textAlign: 'center',
       color: '#ec4899',
-      fontFamily: 'PermanentMarker',
+      fontFamily: 'Roboto',
       textShadowColor: 'black', 
       textShadowOffset: {'width': 2, 'height': 2}, 
       textShadowRadius: 5,
