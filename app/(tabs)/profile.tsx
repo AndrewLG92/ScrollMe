@@ -4,13 +4,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '@/utils/globalcontext'
 import { router } from 'expo-router';
 import { Image } from 'expo-image';
-import { StatusBar } from 'expo-status-bar';
 import TopSvg from '@/components/profile_ui/topsvg';
 import MidSvg from '@/components/profile_ui/midsvg';
+import FocusAwareStatusBar from '@/components/FocusAwareStatusBar';
 
 
 
 export default function Profile() {
+  
   const [refreshing, setRefreshing] = useState(false);
   const {user, loading} = useAuth();
 
@@ -74,7 +75,7 @@ export default function Profile() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-        <StatusBar translucent={true} backgroundColor='#000' style='light'/>
+        <FocusAwareStatusBar bStyle="light-content" bgColor="#000" />
         <TopSvg  />
         <View style={styles.imgContainer}>
           <Image 

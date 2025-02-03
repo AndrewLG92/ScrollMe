@@ -53,7 +53,7 @@ export const AuthProvider = ({children}: Props) => {
   }
 
   const value = { user, loading, supabase};
-  //console.log(`AuthProvider value: ${user}, ${loading}`);
+  //console.log(`AuthProvider value: ${user?.id}`);
 
   return (
     <AuthContext.Provider value={value}>
