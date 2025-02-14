@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import {View, Text, RefreshControl, StyleSheet, Dimensions, ScrollView} from 'react-native';
+import {View, Text, RefreshControl, StyleSheet, Dimensions, ScrollView, Pressable} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '@/utils/globalcontext'
 import { router } from 'expo-router';
@@ -7,6 +7,10 @@ import { Image } from 'expo-image';
 import TopSvg from '@/components/profile_ui/topsvg';
 import MidSvg from '@/components/profile_ui/midsvg';
 import FocusAwareStatusBar from '@/components/FocusAwareStatusBar';
+import Octicons from '@expo/vector-icons/Octicons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 
 
@@ -70,6 +74,27 @@ export default function Profile() {
       fontFamily: 'Roboto',
       fontSize: 24,
     },
+    iconContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      position: 'relative',
+      top: 23,
+      left: 35,
+      padding: 35,
+      width: '82%',
+    },
+    iconPress: {
+      flex: 1,
+      zIndex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    iconLabels: {
+      flex: 1,
+      zIndex: 1,
+      fontSize: 10,
+    }
   })
 
   return (
@@ -90,6 +115,34 @@ export default function Profile() {
           </Text>
         </View>
         <MidSvg />
+        <View style={styles.iconContainer}>
+          <Pressable
+            style={styles.iconPress}
+          >
+            <Octicons name="people" size={24} color="black" />
+            <Text style={styles.iconLabels}>Friends</Text>
+          </Pressable>
+          <Pressable
+            style={styles.iconPress}
+          >
+            <Ionicons name="images-outline" size={24} color="black" />
+            <Text style={styles.iconLabels}>Gallery</Text>
+          </Pressable>
+          <Pressable
+            style={styles.iconPress}
+          >
+            <MaterialIcons name="notes" size={24} color="black" />
+            <Text style={styles.iconLabels}>Posts</Text>
+          </Pressable>
+
+          <Pressable
+            style={styles.iconPress}
+          >
+            <MaterialCommunityIcons name="robot-happy-outline" size={24} color="black" />
+            <Text style={styles.iconLabels}>Hobbies</Text>
+          </Pressable>
+        </View>
+        
       </ScrollView>
     </SafeAreaView>
   );

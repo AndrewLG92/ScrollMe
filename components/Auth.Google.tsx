@@ -40,7 +40,7 @@ export default function AuthGoogle() {
           token: userInfo.data?.idToken,
         });
 
-        console.log(data);
+        
         router.push('/profile');
       } else {
         throw new Error('No Id Token Present!');

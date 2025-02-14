@@ -43,18 +43,19 @@ const FormField = ({title, value, placeholder, handleChangeText, ...props}: any)
 const styles = StyleSheet.create({
     field: {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         width: 250,
-        borderBottomWidth: 3,
+        backgroundColor: '#fff',
+        borderWidth: 3,
         borderRadius: 5,
-        borderColor: '#ec4899',
+        borderColor: '#fff',
     },
     text: {
         width: 215,
         textAlign: 'left',
         lineHeight: 30,
         fontSize: 16,
-        fontFamily: 'Chewy',
+        fontFamily: 'Roboto',
         color: 'black',
     },
     icon: {

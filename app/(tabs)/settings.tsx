@@ -53,14 +53,6 @@ const Settings = () => {
           </Pressable>
 
           <Pressable
-            onPress={() => console.log("pressed")}
-            style={styles.pressWrapper}
-          >
-            <Text style={styles.listText}>Add a Payment method</Text>
-            <Feather name="plus" size={24} color="white" />
-          </Pressable>
-
-          <Pressable
             onPress={LogOut}
             style={styles.pressWrapper}
           >
@@ -109,8 +101,8 @@ const styles = StyleSheet.create({
     top: 150,
     //height: "82%",
     width: '90%',
-    borderWidth: 2,
-    borderColor: '#fff',
+    //borderWidth: 2,
+    //borderColor: '#fff',
     zIndex: 1,
   },
   listText: {

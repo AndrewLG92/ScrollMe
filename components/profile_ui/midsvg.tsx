@@ -3,7 +3,6 @@ import { View, StyleSheet } from "react-native";
 import { Svg, Path } from "react-native-svg";
 
 
-
 export default function MidSvg() {
   
   return (
