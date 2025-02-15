@@ -11,6 +11,8 @@ import Octicons from '@expo/vector-icons/Octicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { supabase } from '@/utils/supabases';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 
@@ -18,6 +20,13 @@ export default function Profile() {
   
   const [refreshing, setRefreshing] = useState(false);
   const {user, loading} = useAuth();
+  const [displayName, setDisplayName] = useState('');
+
+  useFocusEffect(
+    useCallback(() =>{
+      CheckforDisplayName();
+    }, [])
+  );
 
   useEffect(() => {
     if(!user) return router.push('/');
@@ -32,9 +41,21 @@ export default function Profile() {
   }, []);
 
   const { width } = Dimensions.get('window');
-  //console.log(user?.user_metadata.avatar_url);
   const imgUri = user?.user_metadata.avatar_url;
   const userName = user?.user_metadata.full_name;
+  
+  const CheckforDisplayName = async () => {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select("display_name")
+      .eq("id", user?.id)
+      .single()
+
+    if(data?.display_name) {
+      setDisplayName(data?.display_name);
+    }
+  }
+  
 
   const styles = StyleSheet.create({ 
     container: {
@@ -111,7 +132,7 @@ export default function Profile() {
         </View>
         <View style={styles.usernameContainer}>
           <Text style={styles.username}>
-            {userName}
+            {displayName ? displayName : userName}
           </Text>
         </View>
         <MidSvg />
