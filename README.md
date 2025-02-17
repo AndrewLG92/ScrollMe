@@ -30,7 +30,12 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
       you can debug and resolve them. 
       
       Option 2: this one is tricky. I know I had to do a ton of set up to get google and supabase to work. ( will find link to you later.)
-         npx expo run:android
+         npx expo run:android <--build first-->
+         implementation 'com.google.android.gms:play-services-auth:20.7.0' <--Add to File /android/app/build.gradle look for Object "dependencies" >
+         I used WebClient in the Google Cloud Console, because Supabase for Google Auth ask for Client and Secret after setting that up
+         get the Client Id Look for file /android/src/main/strings.xml add <string name="server_client_id">[YOUR CLIENT ID]</string>
+         For OAuth, you need to add a test user. 
+         There is a bunch more info here: https://www.youtube.com/watch?v=vojHmGUGUGc
 
 2. Start the app
 

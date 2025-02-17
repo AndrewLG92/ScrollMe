@@ -13,6 +13,8 @@ import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { supabase } from '@/utils/supabases';
 import { useFocusEffect } from '@react-navigation/native';
+import PostModal from '@/components/PostModal';
+import Feather from '@expo/vector-icons/Feather';
 
 
 
@@ -21,6 +23,11 @@ export default function Profile() {
   const [refreshing, setRefreshing] = useState(false);
   const {user, loading} = useAuth();
   const [displayName, setDisplayName] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [submittedText, setSubmittedText] = useState('');
+
+  const openModal = () => setModalVisible(true);
+  const closeModal = () => setModalVisible(false);
 
   useFocusEffect(
     useCallback(() =>{
@@ -32,9 +39,9 @@ export default function Profile() {
     if(!user) return router.push('/');
   }, [user]);
 
+  
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
@@ -115,6 +122,34 @@ export default function Profile() {
       flex: 1,
       zIndex: 1,
       fontSize: 10,
+    },
+    bioContainer: {
+      flex: 1,
+      position: 'relative',
+      top: 40,
+      width: '83%',
+      padding: 25,
+      alignSelf: 'center',
+      borderWidth: 3,
+      borderRadius: 10,
+      backgroundColor: 'black',
+
+    },
+    bioHeader: {
+      fontSize: 16,
+      color: '#fff',
+      textDecorationLine: 'underline',
+    },
+    bioContent: {
+      color: '#fff'
+    },
+    editBtn: {
+      flex: 1,
+      padding: 10,
+      position: 'relative',
+      right: 20,
+      top: 20,
+      alignItems: 'flex-end',
     }
   })
 
@@ -123,6 +158,9 @@ export default function Profile() {
       <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         <FocusAwareStatusBar bStyle="light-content" bgColor="#000" />
         <TopSvg  />
+        {/* <View style={styles.editBtn}>
+          <Feather name="edit" size={24} color="white" />
+        </View> */}
         <View style={styles.imgContainer}>
           <Image 
             style={styles.img}
@@ -151,6 +189,7 @@ export default function Profile() {
           </Pressable>
           <Pressable
             style={styles.iconPress}
+            onPress={openModal}
           >
             <MaterialIcons name="notes" size={24} color="black" />
             <Text style={styles.iconLabels}>Posts</Text>
@@ -163,7 +202,17 @@ export default function Profile() {
             <Text style={styles.iconLabels}>Hobbies</Text>
           </Pressable>
         </View>
-        
+        <PostModal 
+          visible={modalVisible}
+          onClose={closeModal}
+          title='Status Post'
+          buttonText="Post"
+        />
+
+        <View style={styles.bioContainer}>
+          <Text style={styles.bioHeader}>About Me</Text>
+          <Text style={styles.bioContent}></Text>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
